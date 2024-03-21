@@ -26,9 +26,9 @@ objMoneyManager.addMoneyCallback = data => {
     ApiConnector.addMoney(data, response => {
         if (response.success) {
             ProfileWidget.showProfile(response.data);
-            objMoneyManager.setMessage(response.success, "Money has been successfully added!");
+            objMoneyManager.setMessage(response.success, "Деньги были успешно добавлены!");
         } else {
-            objMoneyManager.setMessage(response.success, "No money added!");
+            objMoneyManager.setMessage(response.success, response.error);
         }
     })
 }
@@ -37,9 +37,9 @@ objMoneyManager.conversionMoneyCallback = data => {
     ApiConnector.convertMoney(data, response => {
         if (response.success) {
             ProfileWidget.showProfile(response.data);
-            objMoneyManager.setMessage(response.success, "The currency has been converted successfully!");
+            objMoneyManager.setMessage(response.success, "Валюта была успешно конвертирована!");
         } else {
-            objMoneyManager.setMessage(response.success, "The currency has not been converted!");
+            objMoneyManager.setMessage(response.success, response.error);
         }
     })
 }
@@ -48,9 +48,9 @@ objMoneyManager.sendMoneyCallback = data => {
     ApiConnector.transferMoney(data, response => {
         if (response.success) {
             ProfileWidget.showProfile(response.data);
-            objMoneyManager.setMessage(response.success, "The currency has been transferred successfully!");
+            objMoneyManager.setMessage(response.success, "Валюта была успешно переведена!");
         } else {
-            objMoneyManager.setMessage(response.success, "The currency has not been transferred!");
+            objMoneyManager.setMessage(response.success, response.error);
         }
     })
 }
@@ -71,9 +71,9 @@ objFavoritesWidget.addUserCallback = (data) => {
             objFavoritesWidget.clearTable();
             objFavoritesWidget.fillTable(response.data);
             objMoneyManager.updateUsersList(response.data);
-            objFavoritesWidget.setMessage(response.success, "The addition to the favorites list was successful!");
+            objFavoritesWidget.setMessage(response.success, "Добавление в список избранного прошло успешно!");
         } else {
-            objFavoritesWidget.setMessage(response.success, "The addition to the favorites list did not pass!");
+            objFavoritesWidget.setMessage(response.success, response.error);
         }
     })
 }
@@ -84,9 +84,9 @@ objFavoritesWidget.removeUserCallback = (data) => {
             objFavoritesWidget.clearTable();
             objFavoritesWidget.fillTable(response.data);
             objMoneyManager.updateUsersList(response.data);
-            objFavoritesWidget.setMessage(response.success, "Deleting a user from favorites was successful!");
+            objFavoritesWidget.setMessage(response.success, "Удаление пользователя из избранного прошло успешно!");
         } else {
-            objFavoritesWidget.setMessage(response.success, "Deleting a user from favorites has not passed!");
+            objFavoritesWidget.setMessage(response.success, response.error);
         }
     })
 }
